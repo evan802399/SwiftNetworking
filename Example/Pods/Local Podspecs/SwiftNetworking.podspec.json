@@ -1,0 +1,33 @@
+{
+  "name": "SwiftNetworking",
+  "version": "0.1.0",
+  "summary": "这是一个iOS网络请求库",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/Cocoa/SwiftNetworking",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Cocoa": "evan802399@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/Cocoa/SwiftNetworking.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "10.0"
+  },
+  "source_files": "SwiftNetworking/Classes/**/*",
+  "dependencies": {
+    "Moya": [
+
+    ],
+    "Alamofire": [
+
+    ],
+    "HandyJSON": [
+
+    ]
+  }
+}
