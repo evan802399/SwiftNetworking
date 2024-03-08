@@ -14,6 +14,8 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		70D3A9A30AE4D78A60ABCC74 /* Pods_SwiftNetworking_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 338A71803384952DA4D25EEB /* Pods_SwiftNetworking_Example.framework */; };
 		BE32C6452B99B93300D19773 /* APITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE32C6442B99B93300D19773 /* APITest.swift */; };
+		BE32C6492B9AF90C00D19773 /* WServiceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE32C6482B9AF90C00D19773 /* WServiceAPI.swift */; };
+		BE32C64B2B9AF99400D19773 /* MoyaConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE32C64A2B9AF99400D19773 /* MoyaConfig.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,8 +35,10 @@
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		82DC6A2393D22F035CE65F1E /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		978A2AF3157CB20980CE24A7 /* Pods-SwiftNetworking_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftNetworking_Example.debug.xcconfig"; path = "Target Support Files/Pods-SwiftNetworking_Example/Pods-SwiftNetworking_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		9CA888F8D9BCB49D37EADC79 /* SwiftNetworking.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = SwiftNetworking.podspec; path = ../SwiftNetworking.podspec; sourceTree = "<group>"; };
+		9CA888F8D9BCB49D37EADC79 /* SwiftNetworking.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = SwiftNetworking.podspec; path = ../SwiftNetworking.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		BE32C6442B99B93300D19773 /* APITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APITest.swift; sourceTree = "<group>"; };
+		BE32C6482B9AF90C00D19773 /* WServiceAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WServiceAPI.swift; sourceTree = "<group>"; };
+		BE32C64A2B9AF99400D19773 /* MoyaConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoyaConfig.swift; sourceTree = "<group>"; };
 		E67BA1B3310F9DC837D7F744 /* Pods_SwiftNetworking_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftNetworking_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -85,6 +89,8 @@
 			isa = PBXGroup;
 			children = (
 				BE32C6442B99B93300D19773 /* APITest.swift */,
+				BE32C64A2B9AF99400D19773 /* MoyaConfig.swift */,
+				BE32C6482B9AF90C00D19773 /* WServiceAPI.swift */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -266,8 +272,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE32C64B2B9AF99400D19773 /* MoyaConfig.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				BE32C6492B9AF90C00D19773 /* WServiceAPI.swift in Sources */,
 				BE32C6452B99B93300D19773 /* APITest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

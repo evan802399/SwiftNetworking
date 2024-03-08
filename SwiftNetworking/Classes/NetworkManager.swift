@@ -10,6 +10,13 @@ import Moya
 import Alamofire
 import HandyJSON
 
+public enum UploadFileType {
+        case Image
+        case Video
+        case Audio
+        case None
+    }
+
 /// 超时时长
 private var requestTimeOut:Double = NetworkSetting.sharedManager.requestTimeOut
 
@@ -180,6 +187,57 @@ public struct NetworkManager<M: HandyJSON> {
         }
         return task
     }
+    
+    /// 上传文件的通用方法
+    /// - Parameters:
+    ///   - fileData: 文件Data类型数据
+    ///   - thumbData: 缩略图数据，可选值可为nil
+    ///   - params: 其它参数
+    ///   - fileType: 上传文件类型
+    ///   - isShowLoadHUD: 是否加载loading
+    ///   - progress: 上传实时进度回调
+    ///   - complete: 上传完成后的回调
+    /// - Returns: 返回的是遵守Cancellable协议的Request, 用于取消息上传
+    @discardableResult
+    static func uploadRequest(_ target: TargetType, fileData: Data, thumbData:Data? = nil, params:[String:Any]? = nil, fileType:UploadFileType, isShowLoadHUD: Bool = false, progress:NetworkProgress? = nil,  completion:@escaping NetworkCompletion) -> Cancellable? {
+        /// 先判断网络是否有链接 没有的话直接返回--代码略
+        if !UIDevice.isNetworkConnect {
+            completion(NetworkResult<M>(errorMsg: "网络似乎出现了问题"))
+            return nil
+        }
+
+        // target从外部传入了，不需要在这处理了
+//        let target = WServiceAPI.uploadFile(fileData: fileData, thumbData:thumbData, params: params ?? [:], fileType: fileType)
+        let task = networkProvider.request(MultiTarget(target), callbackQueue: DispatchQueue.main) { progressResponse in
+            progress?(CGFloat(progressResponse.progress))
+        } completion: { result in
+            //result转为NetworkResult结构体
+            let networkResult = result.mapNetworkResult(M.self)
+            completion(networkResult)
+        }
+        return task
+    }
+    
+    /// 下载文件
+    @discardableResult
+    static func downloadFile(_ target: TargetType, saveName:String = "", isShowLoadHUD: Bool = false, progress:NetworkProgress? = nil,  completion:@escaping NetworkCompletion) -> Cancellable? {
+        /// 先判断网络是否有链接 没有的话直接返回--代码略
+        if !UIDevice.isNetworkConnect {
+            completion(NetworkResult<M>(errorMsg: "网络似乎出现了问题"))
+            return nil
+        }
+
+        // target从外部传入了，不需要在这处理了
+        // let target = WServiceAPI.download(fileUrl: fileUrl, saveName: saveName)
+        let task = networkProvider.request(MultiTarget(target), callbackQueue: DispatchQueue.main) { progressResponse in
+            progress?(CGFloat(progressResponse.progress))
+        } completion: { result in
+            //result转为NetworkResult结构体
+            let networkResult = result.mapNetworkResult(M.self)
+            completion(networkResult)
+        }
+        return task
+    }
 }
 
 
@@ -189,4 +247,23 @@ extension UIDevice {
         let network = NetworkReachabilityManager()
         return network?.isReachable ?? true // 无返回就默认网络已连接
     }
+}
+
+
+
+public class FileSystem {
+public    static let documentsDirectory: URL = {
+        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return urls[urls.endIndex - 1]
+    }()
+    
+public    static let cacheDirectory: URL = {
+        let urls = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
+        return urls[urls.endIndex - 1]
+    }()
+    
+public    static let downloadDirectory: URL = {
+        let directory: URL = FileSystem.documentsDirectory.appendingPathComponent("Download")
+        return directory
+    }()
 }
